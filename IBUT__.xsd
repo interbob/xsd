@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:IBUT_V1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:IBUT="urn:IBUT_V1" xmlns:InterBOB="urn:InterBOB_V1" xmlns:IB="urn:IB_V1">
+	<xs:import namespace="urn:InterBOB_V1" schemaLocation="XML_DDR_InterBOB_fr.xsd"/>
+	<xs:complexType name="t_OperationContrat">
+		<xs:annotation>
+			<xs:documentation>La journalisation d'un événement intervenant dans la vie d'un CONTRAT : initialisation du contrat, acquisitions, validations, etc. Un extrait d'un événement contrat est souvent matétrialisé sur un TITRE DE TRANSPORT.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Date" type="xs:date" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Heure" type="xs:time" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="t_SupportUtilisateur">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_SupportContraint">
+				<xs:choice>
+					<xs:element name="EmetteurSupportEnregistre" type="InterBOB:t_OrganisationEnregistree" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="EmetteurSupportExtraBassin" type="InterBOB:t_OrganisationExtraBassin" minOccurs="1" maxOccurs="1"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_UtilisationProduitInstalle">
+		<xs:complexContent>
+			<xs:extension base="IBUT:t_OperationContrat">
+				<xs:sequence>
+					<xs:element name="SupportUtilise" type="IBUT:t_SupportUtilisateur" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="EquipementValidation" type="InterBOB:t_Equipement" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ApplicationUtilisee" type="InterBOB:t_Application" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="ProduitUtilise" type="IBUT:t_ProduitUtilise" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="AccesValide" type="InterBOB:t_AccesValide" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_ProduitUtilise">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_ProduitAbstrait">
+				<xs:sequence>
+					<xs:element name="Effacable" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_MessageUtilisations">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_Message">
+				<xs:sequence>
+					<xs:element name="UtilisationProduitInstalle" type="IBUT:t_UtilisationProduitInstalle" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MessageUtilisations" type="IBUT:t_MessageUtilisations"/>
+</xs:schema>

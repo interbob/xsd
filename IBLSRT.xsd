@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:IBLSRT_V1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:IBLSRT="urn:IBLSRT_V1" xmlns:IB="urn:IB_V1" xmlns:InterBOB="urn:InterBOB_V1">
+	<xs:import namespace="urn:IB_V1" schemaLocation="IB____.xsd"/>
+	<xs:import namespace="urn:InterBOB_V1" schemaLocation="XML_DDR_InterBOB_fr.xsd"/>
+	<xs:complexType name="t_MessageListeSecurite">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_Message">
+				<xs:sequence>
+					<xs:element name="ListeSecurite" type="IBLSRT:t_ListeSecurite" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MajListeSecurite" type="IBLSRT:t_MessageListeSecurite"/>
+	<xs:complexType name="t_EntreeListeSecurite">
+		<xs:sequence>
+			<xs:element name="EntreeProduitInstalle" type="IB:t_EntreeProduitInstalleAnonyme" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="t_ListeSecurite">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_ListeAbstrait">
+				<xs:sequence>
+					<xs:element name="EntreeListeSecurite" type="IBLSRT:t_EntreeListeSecurite" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

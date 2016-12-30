@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:IB_V1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:IB="urn:IB_V1" xmlns:InterBOB="urn:InterBOB_V1">
+	<xs:import namespace="urn:InterBOB_V1" schemaLocation="XML_DDR_InterBOB_fr.xsd"/>
+	<xs:complexType name="t_ApplicationInstallee">
+		<xs:annotation>
+			<xs:documentation>Une matrice d'application instanciée et implantée sur un support utilisateur, qui doit être invalidée par tout système partenaire la rencontrant.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_ApplicationInstalleeAbstraite">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_EntreeApplicationInstallee">
+		<xs:annotation>
+			<xs:documentation>Une entrée de type "Application Installée" dans la liste de sécurité.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_EntreeListe">
+				<xs:sequence>
+					<xs:element name="ApplicationInstallee" type="IB:t_ApplicationInstallee" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_EntreeProduitInstalleAnonyme">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_EntreeListeAbstrait">
+				<xs:sequence>
+					<xs:element name="ProduitInstalle" type="IB:t_ProduitInstalleAnonyme" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_ObjetAbstrait">
+		<xs:sequence>
+			<xs:element name="Description" type="xs:anyType" minOccurs="1" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Description de l'objet abstrait</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ApplicationUtilisee" type="InterBOB:t_Application" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="t_EntreeClientListeSpontanee">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_EntreeListeAbstrait">
+				<xs:sequence>
+					<xs:element name="ListeApplicationUtilisee" type="IB:t_ListeApplicationUtilisee" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="ClientDetenteur" type="InterBOB:t_Client" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_ProduitInstalleAnonyme">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_ProduitInstalleAbstraitAnonymeContraintTransport">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_ProduitInstalle">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_ProduitInstalleAbstraitContraintTransport">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_EntreeClientAbstraite" abstract="true">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_EntreeListeAbstrait">
+				<xs:sequence>
+					<xs:element name="ApplicationUtilisee" type="IB:t_ApplicationInstallee" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_EntreeProduitInstalle">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_EntreeListeAbstrait">
+				<xs:sequence>
+					<xs:element name="ProduitInstalle" type="IB:t_ProduitInstalle" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_ListeApplicationUtilisee">
+		<xs:sequence>
+			<xs:element name="ApplicationUtilisee" type="InterBOB:t_ApplicationInstallee" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="t_EntreeClient">
+		<xs:complexContent>
+			<xs:extension base="IB:t_EntreeClientAbstraite">
+				<xs:choice>
+					<xs:element name="ClientDetenteur" type="InterBOB:t_Client" minOccurs="0" maxOccurs="1"/>
+				</xs:choice>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_ClientMoral">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_Client">
+				<xs:sequence>
+					<xs:element name="Immatriculation" type="xs:normalizedString" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+</xs:schema>

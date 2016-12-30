@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:InterBOB_V1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:InterBOB="urn:InterBOB_V1">
+	<xs:annotation>
+		<xs:documentation>Schéma XML du corps local du dictionnaire de données d'InterBOB.</xs:documentation>
+	</xs:annotation>
+	<xs:simpleType name="t_CodeCommentaireAccuseReception">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_CodeProfilCommercialContrat">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumCategorie">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumCodeMiseAJour">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_CodeProfil">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumEtatAction">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumEtatOperationVente">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumFacteurTarifaireDeQualite">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumModeTransport">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumMotifEntreeListe">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumMoyenPaiement">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumQualifiantReception">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTitre">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeApplication">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_TypeCommercialContrat">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeCoordonnee">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeEquipement">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeListeSecurite">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeMiseaJour">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeOperationVente">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeSupport">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeTechniqueSousSystemeSecurite">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeTransaction">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumActionEntreeListe">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumStructureApplication">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumFormeContenant">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumCanalDistribution">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_EnumTypeImmatriculation">
+		<xs:restriction base="xs:nonNegativeInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_TypeVoie">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_LibelleVoie">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="t_Commune">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+</xs:schema>
