@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:IBAR_V1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:IBAR="urn:IBAR_V1" xmlns:InterBOB="urn:InterBOB_V1">
+	<xs:import namespace="urn:InterBOB_V1" schemaLocation="XML_DDR_InterBOB_fr.xsd"/>
+	<xs:element name="MessageAccuseReception" type="InterBOB:t_MessageAccuseReception">
+		<xs:annotation>
+			<xs:documentation>Ce message permet de rendre compte de la réception d'un message et de la prise en compte ou non de son contenu.
+Il ne peut être envoyé que par un destinataire du message origine, et adressé à l'émetteur de ce message.</xs:documentation>
+		</xs:annotation>
+	</xs:element>
+</xs:schema>

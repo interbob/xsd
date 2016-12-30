@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:IBACDA_V1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:IBACDA="urn:IBACDA_V1" xmlns:InterBOB="urn:InterBOB_V1" xmlns:IB="urn:IB_V1">
+	<xs:import namespace="urn:IB_V1" schemaLocation="IB____.xsd"/>
+	<xs:import namespace="urn:InterBOB_V1" schemaLocation="XML_DDR_InterBOB_fr.xsd"/>
+	<xs:complexType name="t_MessageAcquisitions">
+		<xs:annotation>
+			<xs:documentation>Message IBACDA rendant compte d'une acquisition d'applications</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_Message">
+				<xs:sequence>
+					<xs:element name="ListeAcquisition" type="IBACDA:t_ListeAcquisition" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_OperationVente">
+		<xs:annotation>
+			<xs:documentation>Permet de décrire une opération unitaire sur un seul objet dans le cadre d'un flux IBACDA.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_OperationVenteAbstrait">
+				<xs:sequence>
+					<xs:element name="ObjetImplique" type="IBACDA:t_ObjetImplique" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="AncienObjetImplique" type="IBACDA:t_ObjetImplique" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MessageAcquisitions" type="IBACDA:t_MessageAcquisitions"/>
+	<xs:complexType name="t_ObjetImplique">
+		<xs:annotation>
+			<xs:documentation>L'objet d'une action contrat (contrat client, support utilisateur, application installée, produit installé...).</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="ApplicationInstallee" type="IB:t_ApplicationInstallee" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="t_ListeAcquisition">
+		<xs:sequence>
+			<xs:element name="OperationVente" type="IBACDA:t_OperationVente" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="urn:IBACBC_V1" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:IBACBC="urn:IBACBC_V1" xmlns:InterBOB="urn:InterBOB_V1" xmlns:IB="urn:IB_V1">
+	<xs:import namespace="urn:IB_V1" schemaLocation="IB____.xsd"/>
+	<xs:import namespace="urn:InterBOB_V1" schemaLocation="XML_DDR_InterBOB_fr.xsd"/>
+	<xs:complexType name="t_ProduitInstalle">
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_ProduitInstalleAbstrait">
+				<xs:sequence>
+					<xs:element name="Effacable" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_ObjetImplique">
+		<xs:choice>
+			<xs:element name="ProduitInstalle" type="IBACBC:t_ProduitInstalle" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="Objet" type="IB:t_ObjetAbstrait" minOccurs="1" maxOccurs="1"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="t_MessageAcquisitions">
+		<xs:annotation>
+			<xs:documentation>Message IBACBC rendant compte du remboursement de contrats</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_Message">
+				<xs:sequence>
+					<xs:element name="ListeAcquisition" type="IBACBC:t_ListeAcquisition" minOccurs="1" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="t_OperationVente">
+		<xs:annotation>
+			<xs:documentation>Permet de décrire une opération unitaire sur un seul objet dans le cadre d'un flux IBACBC.</xs:documentation>
+		</xs:annotation>
+		<xs:complexContent>
+			<xs:extension base="InterBOB:t_OperationVenteAbstrait">
+				<xs:sequence>
+					<xs:element name="ObjetImplique" type="IBACBC:t_ObjetImplique" minOccurs="1" maxOccurs="1"/>
+					<xs:element name="AncienObjetImplique" type="IBACBC:t_ObjetImplique" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="MessageAcquisitions" type="IBACBC:t_MessageAcquisitions"/>
+	<xs:complexType name="t_ListeAcquisition">
+		<xs:sequence>
+			<xs:element name="OperationVente" type="IBACBC:t_OperationVente" minOccurs="1" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
